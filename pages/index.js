@@ -1,40 +1,20 @@
-import getConfig from "next/config";
-
-const { serverRuntimeConfig, publicRuntimeConfig } = getConfig();
-
-console.log(process.env.MY_STEP);
-
-export default function Home(props) {
-  const config = {
-    serverRuntimeConfig: {
-      mySecret: serverRuntimeConfig.mySecret,
-      secondSecret: serverRuntimeConfig.secondSecret,
-    },
-    publicRuntimeConfig: {
-      staticFolder: publicRuntimeConfig.staticFolder,
-    },
-  };
-
-  return (
-    <div>
-      <pre>props: {JSON.stringify(props, null, 2)}</pre>
-      <pre>publicConfig: {JSON.stringify(config, null, 2)}</pre>
-    </div>
-  );
+export default function Home() {
+    return (
+        <div className='container'>
+            <div className="row">
+                <div className="col-md-4">
+                    <h3>React Component 내에서 처리</h3>
+                    <iframe src="/test1" style={{height: '100vh'}}></iframe>
+                </div>
+                <div className="col-md-4">
+                    <h3>`getServerSideProps()` 내에서 동적 `import`로 처리</h3>
+                    <iframe src="/test2" style={{height: '100vh'}}></iframe>
+                </div>
+                <div className="col-md-4">
+                    <h3>`getServerSideProps()` 내에서 일반적인 `import`로 처리</h3>
+                    <iframe src="/test3" style={{height: '100vh'}}></iframe>
+                </div>
+            </div>
+        </div>
+    );
 }
-
-export const getServerSideProps = () => {
-  return {
-    props: {
-      getServerSideProps: {
-        serverRuntimeConfig: {
-          mySecret: serverRuntimeConfig.mySecret,
-          secondSecret: serverRuntimeConfig.secondSecret,
-        },
-        publicRuntimeConfig: {
-          staticFolder: publicRuntimeConfig.staticFolder,
-        },
-      },
-    },
-  };
-};
