@@ -2,7 +2,8 @@ import publicRuntimeConfig from "../common/publicRuntimeConfig";
 
 export default function Home(props) {
     return (
-        <div>
+        <div className='test-container'>
+            <h3>`getServerSideProps()` 내에서 동적 `import`로 처리</h3>
             <h4>publicRuntimeConfig</h4>
             <pre>{JSON.stringify(publicRuntimeConfig, null, 2)}</pre>
             <h4>serverRuntimeConfig</h4>
